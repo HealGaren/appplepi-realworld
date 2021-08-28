@@ -1,7 +1,6 @@
-package com.example.retrofit.adapter;
+package com.example.retrofit.view.articlelist;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,12 @@ import com.example.retrofit.R;
 import com.example.retrofit.data.ArticleData;
 import java.util.List;
 
-public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
+public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
 
     List<ArticleData> articleDataList;
     Context context;
 
-    public ArticleAdapter(List<ArticleData> articleDataList, Context context) {
+    public ArticleListAdapter(List<ArticleData> articleDataList, Context context) {
         super();
         this.articleDataList = articleDataList;
         this.context = context;
@@ -37,7 +36,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ArticleAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ArticleListAdapter.ViewHolder holder, int position) {
 
         String username = articleDataList.get(position).author.username;
         String title = articleDataList.get(position).title;

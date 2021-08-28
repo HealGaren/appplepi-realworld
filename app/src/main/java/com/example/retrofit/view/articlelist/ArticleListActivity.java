@@ -1,4 +1,4 @@
-package com.example.retrofit;
+package com.example.retrofit.view.articlelist;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.retrofit.adapter.ArticleAdapter;
+import com.example.retrofit.R;
 import com.example.retrofit.api.RealWorldClient;
 import com.example.retrofit.data.ArticlesData;
 
@@ -14,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class ArticleListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ArticlesData> call, Response<ArticlesData> response) {
                 if (response.isSuccessful()) {
                     ArticlesData articlesData = response.body();
-                    ArticleAdapter adapter = new ArticleAdapter(articlesData.articles, MainActivity.this);
+                    ArticleListAdapter adapter = new ArticleListAdapter(articlesData.articles, ArticleListActivity.this);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Log.e("error", String.valueOf(response.code()));
