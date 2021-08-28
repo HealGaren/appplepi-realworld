@@ -9,6 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RealWorldClient {
     private static final String baseUrl = "https://realworld-temp-api.herokuapp.com/";
 
+    public static String token;
+
     public static ApiService getApiService() {
         return getInstance().create(ApiService.class);
     }
