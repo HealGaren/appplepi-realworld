@@ -14,12 +14,6 @@ import com.example.retrofit.data.SignInUserData;
 import com.example.retrofit.data.UserData;
 import com.example.retrofit.databinding.ActivitySignInBinding;
 import com.example.retrofit.view.articlelist.ArticleListActivity;
-
-import java.io.IOException;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +21,7 @@ import retrofit2.Response;
 public class SignInActivity extends AppCompatActivity {
 
     ActivitySignInBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +34,9 @@ public class SignInActivity extends AppCompatActivity {
 
             if (email.equals("") || email.equals(" ")) {
                 setErrorAlarm("이메일을 입력해주세요.");
-            }
-
-            else if (password.equals("") || password.equals(" ")) {
+            } else if (password.equals("") || password.equals(" ")) {
                 setErrorAlarm("비밀번호를 입력해주세요.");
-            }
-
-            else {
+            } else {
 
 
                 SignInUserData signInUserData = new SignInUserData(new UserData(email, password));
@@ -65,8 +56,7 @@ public class SignInActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), ArticleListActivity.class);
                             startActivity(intent);
                             finish();
-                        }
-                        else {
+                        } else {
                             setErrorAlarm("이메일 또는 비밀번호가 잘못 입력되었습니다.");
                         }
 
@@ -81,13 +71,11 @@ public class SignInActivity extends AppCompatActivity {
 
         });
 
-/*        binding.signinSignupTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivity(intent);
-            }
-        });*/
+/*        binding.signinSignupTv.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+            startActivity(intent);
+        }*/
+
     }
 
     private void setErrorAlarm(String text) {
@@ -96,7 +84,6 @@ public class SignInActivity extends AppCompatActivity {
             binding.signinErrorTv.setVisibility(View.VISIBLE);
         }
     }
-
 
 
 }
