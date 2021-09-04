@@ -28,6 +28,8 @@ public class ArticleListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.mainRecyclerView);
+        Button writeArticleBtn = findViewById(R.id.writeArticleBtn);
+        writeArticleBtn.setOnClickListener(view -> startActivity(new Intent(this, WriteArticle.class)));
 
         getServerData();
     }
