@@ -68,6 +68,19 @@
             app:layout_constraintTop_toBottomOf="@id/signinLoginBtn"
             />
 
+        <TextView
+            android:id="@+id/signinErrorTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="이메일을 입력해주세요."
+            android:gravity="center"
+            android:textColor="#bd3939"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/signinSignupTv"
+            android:layout_margin="20sp"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

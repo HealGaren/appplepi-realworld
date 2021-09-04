@@ -8,9 +8,9 @@ public class UserData {
 
     @SerializedName("password")
     public String password;
-/*
+
     @SerializedName("token")
-    public String token;*/
+    public String token;
 
     public UserData(String email, String password) {
         this.email = email;
