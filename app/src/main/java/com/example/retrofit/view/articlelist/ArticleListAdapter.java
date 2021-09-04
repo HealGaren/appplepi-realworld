@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.retrofit.R;
 import com.example.retrofit.data.ArticleData;
+import com.example.retrofit.view.articledetail.ArticleDetailActivity;
 
 import java.util.List;
 
@@ -93,7 +94,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
                 Context context = view.getContext();
                 context.startActivity(
-                        new Intent(context, null) // TODO: 액티비티 개발되면 class 연결
+                        new Intent(context, ArticleDetailActivity.class) // TODO: 액티비티 개발되면 class 연결
                                 .putExtra("articleSlug", article.slug)
                 );
             });
