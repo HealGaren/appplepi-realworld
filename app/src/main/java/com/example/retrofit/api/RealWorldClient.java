@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RealWorldClient {
-    private static final String baseUrl = "https://conduit.productionready.io";
+    private static final String baseUrl = "https://conduit.productionready.io/";
 
     public static ApiService getApiService() {
         return getInstance().create(ApiService.class);
