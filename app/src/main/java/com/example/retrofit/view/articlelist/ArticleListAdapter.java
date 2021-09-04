@@ -1,6 +1,7 @@
 package com.example.retrofit.view.articlelist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.retrofit.R;
 import com.example.retrofit.data.ArticleData;
+
 import java.util.List;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
@@ -46,7 +48,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         int likeCount = articleDataList.get(position).favoritesCount;
         StringBuilder tag = new StringBuilder();
 
-        for(int i=0; i< tagList.size(); i++) {
+        for (int i = 0; i < tagList.size(); i++) {
             tag.append("#").append(tagList.get(i));
         }
 
@@ -66,7 +68,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         return articleDataList != null ? articleDataList.size() : 0;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView profileImage;
         TextView usernameTv;
@@ -85,6 +87,16 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             descriptionTv = itemView.findViewById(R.id.descriptionTv);
             tagTv = itemView.findViewById(R.id.tagTv);
             likeCountTv = itemView.findViewById(R.id.likeCountTv);
+
+            itemView.setOnClickListener(view -> {
+                ArticleData article = articleDataList.get(this.getAdapterPosition());
+
+                Context context = view.getContext();
+                context.startActivity(
+                        new Intent(context, null) // TODO: 액티비티 개발되면 class 연결
+                                .putExtra("articleSlug", article.slug)
+                );
+            });
         }
     }
 }
