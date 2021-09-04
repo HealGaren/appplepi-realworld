@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RealWorldClient {
-    private static final String baseUrl = "https://realworld-temp-api.herokuapp.com/";
+    private static final String baseUrl = "https://conduit.productionready.io/";
 
     public static String token;
 
