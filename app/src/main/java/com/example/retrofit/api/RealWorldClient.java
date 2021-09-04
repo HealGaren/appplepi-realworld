@@ -14,7 +14,6 @@ public class RealWorldClient {
     private static final String baseUrl = "https://conduit.productionready.io/";
 
     public static String token;
-    private static final String baseUrl = "https://conduit.productionready.io/";
 
     public static ApiService getApiService() {
         return getInstance().create(ApiService.class);

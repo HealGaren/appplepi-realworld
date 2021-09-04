@@ -1,5 +1,7 @@
 package com.example.retrofit.data;
 
+import com.example.retrofit.data.articledetail.AuthorData;
+
 import java.util.List;
 
 public class SingleArticleResponseData {

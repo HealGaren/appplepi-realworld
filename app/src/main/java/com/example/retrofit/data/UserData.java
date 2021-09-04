@@ -6,4 +6,6 @@ public class UserData {
     public String username;
     public String bio;
     public String image;
+
+
 }

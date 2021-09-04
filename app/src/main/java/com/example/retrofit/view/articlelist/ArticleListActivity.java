@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.example.retrofit.R;
 import com.example.retrofit.api.RealWorldClient;
-import com.example.retrofit.data.ArticlesData;
 import com.example.retrofit.view.writearticle.WriteArticle;
 import com.example.retrofit.data.articledetail.ArticlesData;
 

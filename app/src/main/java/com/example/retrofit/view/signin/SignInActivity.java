@@ -10,7 +10,10 @@ import android.view.View;
 
 import com.example.retrofit.R;
 import com.example.retrofit.api.RealWorldClient;
+import com.example.retrofit.data.NewUserData;
 import com.example.retrofit.data.SignInUserData;
+import com.example.retrofit.data.SignInUserRequestData;
+import com.example.retrofit.data.SignInUserResponseData;
 import com.example.retrofit.data.UserData;
 import com.example.retrofit.databinding.ActivitySignInBinding;
 import com.example.retrofit.view.articlelist.ArticleListActivity;
@@ -39,17 +42,17 @@ public class SignInActivity extends AppCompatActivity {
             } else {
 
 
-                SignInUserData signInUserData = new SignInUserData(new UserData(email, password));
-                Call<SignInUserData> call = RealWorldClient.getApiService().login(signInUserData);
+                SignInUserRequestData signInUserData = new SignInUserRequestData(new SignInUserData(email, password));
+                Call<SignInUserResponseData> call = RealWorldClient.getApiService().login(signInUserData);
 
-                call.enqueue(new Callback<SignInUserData>() {
+                call.enqueue(new Callback<SignInUserResponseData>() {
                     @Override
-                    public void onResponse(Call<SignInUserData> call, Response<SignInUserData> response) {
+                    public void onResponse(Call<SignInUserResponseData> call, Response<SignInUserResponseData> response) {
                         Log.e("respose", response.toString());
 
                         if (response.isSuccessful()) {
 
-                            final SignInUserData responseData = response.body();
+                            final SignInUserResponseData responseData = response.body();
                             RealWorldClient.token = responseData != null ? responseData.userData.token : null;
                             Log.e("test", "success");
 
@@ -63,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<SignInUserData> call, Throwable t) {
+                    public void onFailure(Call<SignInUserResponseData> call, Throwable t) {
                         t.printStackTrace();
                     }
                 });
