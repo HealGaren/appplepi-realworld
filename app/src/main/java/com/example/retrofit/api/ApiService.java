@@ -3,6 +3,8 @@ package com.example.retrofit.api;
 import com.example.retrofit.data.articledetail.ArticleDetailCommentData;
 import com.example.retrofit.data.articledetail.ArticleDetailData;
 import com.example.retrofit.data.ArticlesData;
+import com.example.retrofit.data.NewArticleData;
+import com.example.retrofit.data.SingleArticleResponseData;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,6 +16,10 @@ public interface ApiService {
     @GET("/api/articles")
     Call<ArticlesData> getArticle();
 
+    //yunsoo
+    @POST("/api/articles")
+    Call<SingleArticleResponseData> postArticle(@Body NewArticleData newArticleData);
+
     @GET("/articles/{slug}")
     Call<ArticleDetailData> getArticleDetail(@Path("slug") String slug);
 
@@ -22,4 +28,5 @@ public interface ApiService {
 
 //    @POST("")
 //    Call<ArticleDetailData> postArticle(@Body)
+
 }
