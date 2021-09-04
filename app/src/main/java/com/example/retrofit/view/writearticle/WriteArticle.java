@@ -44,9 +44,13 @@ public class WriteArticle extends AppCompatActivity {
                 String body = singleArticleResponseData.body;
                 List<String> tagList = singleArticleResponseData.tagList;
 
+
+                // 오류 수정 내용
                 Call<SingleArticleResponseData> call = RealWorldClient
                         .getApiService()
                         .postArticle(new NewArticleData(title,description,body,tagList));
+
+                // 오류 수정 내용
                 call.enqueue(new Callback<SingleArticleResponseData>() {
                     @Override
                     public void onResponse(Call<SingleArticleResponseData> call, Response<SingleArticleResponseData> response) {
