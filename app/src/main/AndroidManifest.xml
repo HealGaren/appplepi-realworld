@@ -13,9 +13,10 @@
         android:theme="@style/Theme.Retrofit">
         <activity android:name=".view.articledetail.ArticleDetailActivity" />
         <activity android:name=".view.signup.SignUpActivity" />
+        <activity android:name=".view.articlelist.ArticleListActivity" />
         <activity
-            android:name=".view.articlelist.ArticleListActivity"
-            android:exported="true">
+            android:name=".view.signin.SignInActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
