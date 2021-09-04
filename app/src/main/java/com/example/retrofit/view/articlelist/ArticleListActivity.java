@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.example.retrofit.R;
 import com.example.retrofit.api.RealWorldClient;
-import com.example.retrofit.data.ArticlesData;
+import com.example.retrofit.data.articledetail.ArticlesData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
