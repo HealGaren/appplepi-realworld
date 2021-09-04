@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.retrofit.R;
-import com.example.retrofit.data.ArticleData;
+import com.example.retrofit.data.articledetail.ArticleData;
 import com.example.retrofit.view.articledetail.ArticleDetailActivity;
 
 import java.util.List;

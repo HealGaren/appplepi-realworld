@@ -8,11 +8,12 @@ import com.example.retrofit.data.UserResponseData;
 import com.example.retrofit.data.SignInUserData;
 import com.example.retrofit.data.NewArticleData;
 import com.example.retrofit.data.SingleArticleResponseData;
+import com.example.retrofit.data.articledetail.ArticlesData;
+import com.example.retrofit.data.articledetail.commentdata.CommentData;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -25,10 +26,10 @@ public interface ApiService {
     @POST("/api/users/login")
     Call<SignInUserData> login(@Body SignInUserData signInUserData);
 
-    @GET("/articles/{slug}")
+    @GET("/api/articles/{slug}")
     Call<ArticleDetailData> getArticleDetail(@Path("slug") String slug);
 
-    @GET("/articles/{slug}/comment")
+    @GET("/api/articles/{slug}/comments")
     Call<ArticleDetailCommentData> getArticleComment(@Path("slug") String slug);
 
 

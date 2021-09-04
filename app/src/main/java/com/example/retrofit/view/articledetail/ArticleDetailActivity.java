@@ -16,7 +16,9 @@ import com.example.retrofit.api.RealWorldClient;
 import com.example.retrofit.data.articledetail.ArticleDetailCommentData;
 import com.example.retrofit.data.articledetail.ArticleDetailData;
 import com.example.retrofit.data.articledetail.Comment;
+import com.example.retrofit.data.articledetail.commentdata.CommentData;
 import com.example.retrofit.databinding.ActivityArticleDetailBinding;
+import com.example.retrofit.view.articledetail.adapter.CommentAdapter;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,7 @@ import retrofit2.Response;
 public class ArticleDetailActivity extends AppCompatActivity {
 
     private ActivityArticleDetailBinding binding;
+    private ArrayList<Comment> comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,38 @@ public class ArticleDetailActivity extends AppCompatActivity {
         String articleSlug = i.getStringExtra("articleSlug");
         getArticleData(articleSlug);
         getCommentData(articleSlug);
+
+
+        binding.button.setOnClickListener(view -> {
+            if(binding.commentEditText.getText().toString().isEmpty()){
+                Toast.makeText(ArticleDetailActivity.this, "댓글을 입력해주세요", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                postCommentData(articleSlug);
+            }
+        });
+
+    }
+
+    private void postCommentData(String articleSlug) {
+        Call<CommentData> call = RealWorldClient.getApiService().postArticleComment(articleSlug, binding.commentEditText.getText().toString());
+
+        call.enqueue(new Callback<CommentData>() {
+            @Override
+            public void onResponse(Call<CommentData> call, Response<CommentData> response) {
+                if(response.isSuccessful()){
+                    getCommentData(articleSlug);
+                }
+                else{
+                    Toast.makeText(ArticleDetailActivity.this, "댓글 작성하기에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommentData> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getCommentData(String articleSlug) {
@@ -48,14 +83,15 @@ public class ArticleDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ArticleDetailCommentData> call, Response<ArticleDetailCommentData> response) {
                 if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: 성공한 이유"+response);
                     ArticleDetailCommentData data = response.body();
                     assert data != null;
-                    ArrayList<Comment> comments = (ArrayList<Comment>) data.getComments();
-
-
+                    comments = (ArrayList<Comment>) data.getComments();
+                    binding.commentRecycler.setAdapter(new CommentAdapter(comments));
                 }
                 else{
                     Toast.makeText(ArticleDetailActivity.this, "댓글 불러오기에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onResponse: 실패한 이유"+response);
                 }
             }
 
@@ -74,15 +110,19 @@ public class ArticleDetailActivity extends AppCompatActivity {
             public void onResponse(Call<ArticleDetailData> call, Response<ArticleDetailData> response) {
                 if(response.isSuccessful()){
 
+                    Log.d(TAG, "onResponse: call "+response);
                     ArticleDetailData result = response.body();
-                    binding.articlePostText.setText(result.articleDetailPost.description);
-                    binding.titleText.setText(result.articleDetailPost.title);
+                    Log.d(TAG, "onResponse: result : "+result);
+                    binding.articlePostText.setText(result.article.description);
+                    binding.titleText.setText(result.article.title);
                     Glide.with(ArticleDetailActivity.this)
-                            .load(result.author.image)
+                            .load(result.article.author.image)
                             .into(binding.writerImageView);
+                    binding.writerText.setText(result.article.author.username);
                 }
                 else{
                     Log.e(TAG, "onResponse: ");
+                    Log.d(TAG, "onResponse: response : "+response);
                 }
             }
 
